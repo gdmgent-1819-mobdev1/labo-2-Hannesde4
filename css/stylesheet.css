@@ -1,0 +1,80 @@
+.clearfix {
+    overflow: auto;
+}
+
+.clearfix::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+body{
+    margin:auto;
+    max-width:500px;
+    width:100%;
+    font-size: 18px;
+    padding:20px;
+    border: solid 10px rgba(122,122,122,1);
+}
+
+.container{
+    max-width:500px;
+    width:100%;
+    min-height:200px;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+.image{
+    background-color:red;
+    max-width: 100%;
+    width:100%;
+}
+
+.container h3.name, .container h4.place{
+    display:block;
+    float:left;
+    color:green;
+    padding:0;
+    margin:0;
+    font-size:2rem;
+}
+.container h4.place{
+    clear:both;
+    padding:0;
+    margin:10px 0 20px 0;
+    width:100%;
+    font-size:1.8rem;
+}
+
+.container .button.icon{
+    float:left;
+    width:100px;
+    height:100px;
+    border-radius:50%;
+    border: 5px solid rgb(255, 255, 255);
+    display:flex;
+    justify-content:center;
+    margin: 10px 30px;
+}
+
+.container .button.icon i.fas{
+    display:flex;
+    width:50px;
+    height:50px;
+    font-size:50px;
+    color:rgb(255, 255, 255);
+    justify-content:center;
+    margin-top:25px;
+}
+
+.container .button.icon:last-child{
+    float:right;
+}
+
+.container .button.icon#like{
+    background-color:green;
+}
+
+.container .button.icon#dislike{
+    background-color:red;
+}
