@@ -103,7 +103,7 @@ function statusShow(){
     list.innerHTML ="";
     //kijkt wie er geliked is
     for( a = 0; a < storedAmount; a++){
-        showListLiked("like");
+        showListLiked("like"); 
     };
     //kijkt wie er gedisliked wordt
     for( a = 0; a < storedAmount; a++){
@@ -122,15 +122,26 @@ function showListLiked(keuze){
             userChoice = "fa-times";
         };
         list.innerHTML += '<li class="personList clearfix" id="' + person.id + '"> <img src="' + person.image + '" alt="profile picture"><p>' + person.firstName + ' ' + person.secondName + ', ' + person.age + '</p><p>' + person.place + '</p><i class="personChoiceIcon fas ' + userChoice + '"></i> </li>';
-        console.log(person);
+        let personId = person.id;
+        let doc = document.getElementById(personId);
+        let status = person.choice;
+        doc.onclick = function(){
+            const res = parseInt(personId.substr(3));
+            //if statement voor de keuze van de gebruiker te weizigen
+            if(status == "like"){
+                status = "dislike";
+            }else if(status == "dislike"){
+                status = "like"
+            }
+            //keuze van de gebruiker aanpassen in de localstorage
+            let person = JSON.parse(localStorage[res]);
+            person.choice = status;
+            let dataPerson = JSON.stringify(person);
+            localStorage[res] = dataPerson;
+            //reeds gelikte/ gedislikte personen opnieuw laden
+            statusShow();
+        };
     };
-};
-
-
-
-let personList = document.getElementsByClassName('personList');
-personList.onclick = function(){
-    console.log("dit werkt!");
 };
 
 
