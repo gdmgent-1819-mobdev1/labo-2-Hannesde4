@@ -60,11 +60,10 @@ body{
 .container .button.icon i.fas{
     display:flex;
     width:50px;
-    height:50px;
     font-size:50px;
     color:rgb(255, 255, 255);
     justify-content:center;
-    margin-top:25px;
+    align-items:center;
 }
 
 .container .button.icon:last-child{
@@ -77,4 +76,46 @@ body{
 
 .container .button.icon#dislike{
     background-color:red;
+}
+
+.container .button.icon#check{
+    background-color:blue;
+}
+
+.status ol.personChoice li.personList p, .status ol.personChoice li.personList img{
+    float:left
+}
+
+.status ol.personChoice li.personList img{
+    clear:left;
+}
+
+.status ol.personChoice{
+    padding-left:0;
+}
+
+.status ol.personChoice li.personList{
+    border-bottom: solid 2px rgba(122,122,122,1);
+}
+
+.status ol.personChoice li.personList:last-child{
+    border-bottom: none;
+}
+
+.status ol.personChoice li.personList i.fas{
+    float:right;
+    background-color: green;
+    border-radius:50%;
+    width:50px;
+    height:50px;
+    font-size:30px;
+    display: flex;
+    justify-content: center;
+    align-items:center;
+    color:white;
+}
+
+.status ol.personChoice li.personList i.fas.fa-times{
+    float:right;
+    background-color: red;
 }
