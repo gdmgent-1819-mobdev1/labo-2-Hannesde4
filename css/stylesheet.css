@@ -15,6 +15,7 @@ body{
     font-size: 18px;
     padding:20px;
     border: solid 10px rgba(122,122,122,1);
+    border-radius:35px;
 }
 
 .container{
@@ -28,12 +29,12 @@ body{
     background-color:red;
     max-width: 100%;
     width:100%;
+    border-radius:10%;
 }
 
 .container h3.name, .container h4.place{
     display:block;
     float:left;
-    color:green;
     padding:0;
     margin:0;
     font-size:2rem;
@@ -51,7 +52,6 @@ body{
     width:100px;
     height:100px;
     border-radius:50%;
-    border: 5px solid rgb(255, 255, 255);
     display:flex;
     justify-content:center;
     margin: 10px 30px;
@@ -66,6 +66,10 @@ body{
     align-items:center;
 }
 
+.container .button.icon i.fa-bars{
+    color:black;
+}
+
 .container .button.icon:last-child{
     float:right;
 }
@@ -78,12 +82,15 @@ body{
     background-color:red;
 }
 
-.container .button.icon#check{
-    background-color:blue;
+.icon#check{
+    color:black;
+    font-size:50px;
 }
 
 .status ol.personChoice li.personList p, .status ol.personChoice li.personList img{
-    float:left
+    float:left;
+    border-radius: 10px;
+    margin-right:10px;
 }
 
 .status ol.personChoice li.personList img{
@@ -118,4 +125,8 @@ body{
 .status ol.personChoice li.personList i.fas.fa-times{
     float:right;
     background-color: red;
+}
+
+.not-visible{
+    display: none;
 }

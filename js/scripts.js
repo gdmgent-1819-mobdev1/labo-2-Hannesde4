@@ -9,6 +9,7 @@ const list = document.getElementsByClassName('personChoice')[0];
 const update = document.getElementsByClassName("personList");
 let countStorage = 0;
 let test = 0;
+let counter = 0;
 
 
 function getData() {
@@ -93,12 +94,32 @@ function changeLike(status){
 
 //als er op de status button wordt geklikt, dan wordt de functie statusShow aangeroepen
 status.onclick = function(){
+    let element = document.getElementsByClassName("container")[0];
+    let element2 = document.getElementsByClassName("status")[0]
+    //als er nog geen likes of dislikes zijn aangeklikt, dan krijg je een alert
+    if(test !== 0){
+        //kijkt of de class not-visible al is toegewezen, indien wel, 
+        //dan wordt deze verwijderd, indien nioet, dan wordt deze toegepast
+        if ( element.className.match(/(?:^|\s)not-visible(?!\S)/) ){
+            element.classList.remove('not-visible');
+        }else{
+            element.classList.add('not-visible');
+        }
+        if ( element2.className.match(/(?:^|\s)not-visible(?!\S)/) ){
+            element2.classList.remove('not-visible');
+        }else{
+            element2.classList.add('not-visible');
+        }
+    }else{
+        alert("Maak eerst je keuze bij je eerste match voordat je een overzicht krijgt van de reeds doorlopen personen");
+    }
     statusShow();
 };
 
 
 //functie die iedereen in localstorage overloopt en naar de forFunction doorstuurd
 function statusShow(){
+    counter = 0;
     let storedAmount = localStorage.length;
     list.innerHTML ="";
     //kijkt wie er geliked is
@@ -118,31 +139,40 @@ function showListLiked(keuze){
     if(person.choice == keuze){
         if(keuze == "like"){
             userChoice = "fa-heart";
+            counter++;
         }else if( keuze == "dislike"){
             userChoice = "fa-times";
+            counter++;
         };
-        list.innerHTML += '<li class="personList clearfix" id="' + person.id + '"> <img src="' + person.image + '" alt="profile picture"><p>' + person.firstName + ' ' + person.secondName + ', ' + person.age + '</p><p>' + person.place + '</p><i class="personChoiceIcon fas ' + userChoice + '"></i> </li>';
-        let personId = person.id;
-        let doc = document.getElementById(personId);
-        let status = person.choice;
-        doc.onclick = function(){
-            const res = parseInt(personId.substr(3));
-            //if statement voor de keuze van de gebruiker te weizigen
-            if(status == "like"){
-                status = "dislike";
-            }else if(status == "dislike"){
-                status = "like"
-            }
-            //keuze van de gebruiker aanpassen in de localstorage
-            let person = JSON.parse(localStorage[res]);
-            person.choice = status;
-            let dataPerson = JSON.stringify(person);
-            localStorage[res] = dataPerson;
-            //reeds gelikte/ gedislikte personen opnieuw laden
-            statusShow();
-        };
+        list.innerHTML += '<li class="personList clearfix"> <img src="' + person.image + '" alt="profile picture"><p>' + person.firstName + ' ' + person.secondName + ', ' + person.age + '</p><p>' + person.place + '</p><i class="personChoiceIcon fas ' + userChoice + '" id="' + person.id + '"></i> </li>';
     };
 };
+
+
+//eventlistener, als er geklikt wordt op een element binnen mijn ol
+document.getElementById("personChoice").addEventListener("click", function(e) {
+    //er wordt gekeken of er geklikt is op een i-element
+    if(e.target && e.target.nodeName == "I"){
+        let key = e.target.id;
+        let res = parseInt(key.substr(3));
+        let person = JSON.parse(localStorage[res]);
+        let status = person.choice
+        //switch van like naar dislike of dislike naar like
+        if(status == "like"){
+            status = "dislike";
+            console.log(status);
+        }else if(status == "dislike"){
+            status = "like";
+        }
+        //plaatst nieuwe keuze in de localStorage
+        person.choice = status;
+        let dataPerson = JSON.stringify(person);
+        console.log(dataPerson);
+        localStorage[res] = dataPerson;
+        //refresht de personen
+        statusShow();
+    }
+})
 
 
 //getData functie aanroepen

@@ -9,12 +9,11 @@
     <title>Hannes De Baere labo-2 Tinder V1</title>
 </head>
 <body>
-
+    <div class="button icon" id="check">
+            <i class="fas fa-bars"></i>
+    </div>
+    <h1 class="appName">Vinder v1</h1>
     <div class="container clearfix">
-        <h1 class="appName">Vinder v1</h1>
-        <div class="button icon" id="nav">
-            <i class="fas fa-times"></i>
-        </div>
         <img class="image" src="https://via.placeholder.com/800x800" alt="profile picture">
         <h3 class="name"></h3>
         <h4 class="place"></h4>
@@ -24,13 +23,9 @@
         <div class="button icon" id="like">
                 <i class="fas fa-heart"></i>
         </div>
-        <div class="button icon" id="check">
-                <i class="fas fa-heart"></i>
-        </div>
     </div>
-    <div class="status clearfix">
-        <ol class="personChoice clearfix">
-            
+    <div class="status clearfix not-visible">
+        <ol class="personChoice clearfix" id="personChoice">
         </ol>
     </div>
 
