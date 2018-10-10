@@ -1,12 +1,11 @@
 //aanmaken variabelen
 const like = document.getElementById("like");
 const dislike = document.getElementById("dislike");
-const image = document.getElementsByClassName("image");
-const place = document.getElementsByClassName("place");
-const name = document.getElementsByClassName("name");
+const image = document.getElementsByClassName("image")[0];
+const place = document.getElementsByClassName("place")[0];
+const name = document.getElementsByClassName("name")[0];
 const status = document.getElementById("check");
 const list = document.getElementsByClassName('personChoice')[0];
-const update = document.getElementsByClassName("personList");
 let countStorage = 0;
 let test = 0;
 let counter = 0;
@@ -26,7 +25,7 @@ function getData() {
 
 
 function addToStorage(data){
-    //loop om alle personen te overlopen
+    //loop om alle personen te overlopen en in ee object te steken
     for( i = 0; i < 10; i++){
         //object waarin ik de gewenste data steek
         let personData = {
@@ -57,10 +56,9 @@ function addToStorage(data){
 function personOnScreen(){
     //string uit localStorage halen en omzetten in object
     let person = JSON.parse(localStorage[test]);
-    console.log(person);
-    name[0].innerHTML = person.firstName + ', ' + person.age;
-    place[0].innerHTML = person.place;
-    image[0].src = person.image;
+    name.innerHTML = person.firstName + ', ' + person.age;
+    place.innerHTML = person.place;
+    image.src = person.image;
 };
 
 
@@ -160,14 +158,12 @@ document.getElementById("personChoice").addEventListener("click", function(e) {
         //switch van like naar dislike of dislike naar like
         if(status == "like"){
             status = "dislike";
-            console.log(status);
         }else if(status == "dislike"){
             status = "like";
         }
         //plaatst nieuwe keuze in de localStorage
         person.choice = status;
         let dataPerson = JSON.stringify(person);
-        console.log(dataPerson);
         localStorage[res] = dataPerson;
         //refresht de personen
         statusShow();

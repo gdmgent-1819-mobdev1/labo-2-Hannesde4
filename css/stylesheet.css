@@ -95,6 +95,7 @@ body{
 
 .status ol.personChoice li.personList img{
     clear:left;
+    margin:10px;
 }
 
 .status ol.personChoice{
