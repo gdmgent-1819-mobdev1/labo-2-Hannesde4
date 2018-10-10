@@ -77,7 +77,7 @@ dislike.onclick = function(){
 
 
 //functie die wordt aangeroepen als er op like of dislike wordt geklikt die de status aanpast
-// en terug in local storage plaatst
+//en terug in local storage plaatst
 function changeLike(status){
     let person = JSON.parse(localStorage[test]);
     person.choice = status;
@@ -92,22 +92,13 @@ function changeLike(status){
 
 //als er op de status button wordt geklikt, dan wordt de functie statusShow aangeroepen
 status.onclick = function(){
-    let element = document.getElementsByClassName("container")[0];
-    let element2 = document.getElementsByClassName("status")[0]
+    let containerDiv = document.getElementsByClassName("container")[0];
+    let statusDiv = document.getElementsByClassName("status")[0]
     //als er nog geen likes of dislikes zijn aangeklikt, dan krijg je een alert
     if(test !== 0){
-        //kijkt of de class not-visible al is toegewezen, indien wel, 
-        //dan wordt deze verwijderd, indien nioet, dan wordt deze toegepast
-        if ( element.className.match(/(?:^|\s)not-visible(?!\S)/) ){
-            element.classList.remove('not-visible');
-        }else{
-            element.classList.add('not-visible');
-        }
-        if ( element2.className.match(/(?:^|\s)not-visible(?!\S)/) ){
-            element2.classList.remove('not-visible');
-        }else{
-            element2.classList.add('not-visible');
-        }
+        //wisselt de class not-visible over de 2 div's
+        containerDiv.classList.toggle('not-visible');
+        statusDiv.classList.toggle('not-visible');
     }else{
         alert("Maak eerst je keuze bij je eerste match voordat je een overzicht krijgt van de reeds doorlopen personen");
     }
@@ -134,14 +125,13 @@ function statusShow(){
 //functie die kijkt in localstorage wie er reeds geliked of gedisliked is
 function showListLiked(keuze){
     let person = JSON.parse(localStorage[a]);
-    if(person.choice == keuze){
-        if(keuze == "like"){
-            userChoice = "fa-heart";
-            counter++;
-        }else if( keuze == "dislike"){
-            userChoice = "fa-times";
-            counter++;
-        };
+    if(person.choice == keuze && keuze == "like"){
+        userChoice = "fa-heart";
+        counter++;
+        list.innerHTML += '<li class="personList clearfix"> <img src="' + person.image + '" alt="profile picture"><p>' + person.firstName + ' ' + person.secondName + ', ' + person.age + '</p><p>' + person.place + '</p><i class="personChoiceIcon fas ' + userChoice + '" id="' + person.id + '"></i> </li>';
+    }else if(person.choice == keuze && keuze == "dislike"){
+        userChoice = "fa-times";
+        counter++;
         list.innerHTML += '<li class="personList clearfix"> <img src="' + person.image + '" alt="profile picture"><p>' + person.firstName + ' ' + person.secondName + ', ' + person.age + '</p><p>' + person.place + '</p><i class="personChoiceIcon fas ' + userChoice + '" id="' + person.id + '"></i> </li>';
     };
 };
