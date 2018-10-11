@@ -62,22 +62,19 @@ function personOnScreen(){
 };
 
 
-//als er geklikt wordt op like,
-//dan wordt de functie changeLike opgeroepen
+//als er geklikt wordt op like, dan wordt de functie changeLike opgeroepen
 like.onclick = function(){
     changeLike("like");
 };
 
 
-//als er geklikt wordt op dislike,
-//dan wordt de functie changeLike opgeroepen
+//als er geklikt wordt op dislike, dan wordt de functie changeLike opgeroepen
 dislike.onclick = function(){
     changeLike("dislike");
 };
 
 
-//functie die wordt aangeroepen als er op like of dislike wordt geklikt die de status aanpast
-//en terug in local storage plaatst
+//functie die wordt aangeroepen als er op like of dislike wordt geklikt die de status aanpast en terug in local storage plaatst
 function changeLike(status){
     let person = JSON.parse(localStorage[test]);
     person.choice = status;
